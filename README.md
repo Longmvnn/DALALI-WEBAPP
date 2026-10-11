@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DALALI web app
 
-## Getting Started
+The web version of Dalali Msomi, built with Next.js and styled from the DALALI brand guide (`../Design.pdf`).
 
-First, run the development server:
+## Run it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What's included (v0.1)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Page | Path |
+|---|---|
+| Home: hero search, categories, latest listings | `/` |
+| Search with filters (category, price, bedrooms, furnishing, area, sort) | `/search` |
+| Property detail | `/property/[id]` |
+| Request a viewing and confirmation | `/property/[id]/request` |
+| Sign in / Create account (seeker or dalali) | `/signin`, `/signup` |
+| Profile (viewing requests, saved) | `/profile` |
+| Saved properties | `/saved` |
+| Settings (profile, notifications, light/dark theme) | `/settings` |
+| Help & Support, Terms, Privacy | `/help` |
 
-## Learn More
+Not included yet: chat, posting a listing, payments/escrow. KYC is left out on purpose.
 
-To learn more about Next.js, take a look at the following resources:
+## Sample data and connecting the backend
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The app currently runs on sample data, so it works without a server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Listings and dalalis:** `lib/mock-data.ts`, read only through `lib/api.ts`.
+- **Accounts, saved properties and viewing requests:** `lib/store.tsx`, stored in the browser's localStorage.
 
-## Deploy on Vercel
+To connect the same backend as the Android app and admin dashboard, replace the function bodies in `lib/api.ts` and the sign-in, sign-up, save and request functions in `lib/store.tsx`. The pages don't need to change.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Brand
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Colours, fonts (Unbounded + Figtree) and dark mode are defined as CSS variables at the top of `app/globals.css`.
